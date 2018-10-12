@@ -8,9 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+
     <style name="estilo_nacional">
         <item name="android:textColor">#e4e4e4</item>
         <item name="android:fontFamily">@font/oregon_ldo_black</item>
     </style>
-
 </resources>

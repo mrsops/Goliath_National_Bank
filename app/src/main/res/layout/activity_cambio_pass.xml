@@ -5,32 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gnb_background"
-    tools:context="com.simarro.practicas.goliath_national_bank.MainActivity">
+    tools:context="com.simarro.practicas.goliath_national_bank.CambioPass">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
+        android:layout_marginBottom="50dp"
 
         >
 
         <TextView
-            android:id="@+id/user"
+            android:id="@+id/oldPass"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/berlian"
-            android:text="@string/user"
+            android:text="@string/actual_pass"
             android:textAlignment="textStart"
             android:textSize="25sp"
             style="@style/estilo_nacional"
             android:labelFor="@id/userInsert"/>
 
         <EditText
-            android:id="@+id/userInsert"
+            android:id="@+id/oldPassInsert"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
@@ -42,19 +43,19 @@
             android:importantForAutofill="no" tools:targetApi="o"/>
 
         <TextView
-            android:id="@+id/pass"
+            android:id="@+id/newPass"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/berlian"
-            android:text="@string/pass"
+            android:text="@string/new_pass"
             android:textAlignment="textStart"
             android:textSize="25sp"
             style="@style/estilo_nacional"
             android:labelFor="@id/passInsert"/>
 
         <EditText
-            android:id="@+id/passInsert"
+            android:id="@+id/newPassInsert"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="40dp"
@@ -63,17 +64,28 @@
             android:textSize="15sp"
             style="@style/estilo_nacional"
             android:autofillHints="" tools:targetApi="o"/>
-
-        <Button
-            android:id="@+id/button"
-            android:tag="validar"
+        <TextView
+            android:id="@+id/repeatedPass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:text="@string/validate"
-            android:onClick="onClick"/>
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/berlian"
+            android:text="@string/repeat_pass"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            style="@style/estilo_nacional"
+            android:labelFor="@id/passInsert"/>
+
+        <EditText
+            android:id="@+id/repeatedInsert"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="40dp"
+            android:ems="13"
+            android:inputType="textPassword"
+            android:textSize="15sp"
+            style="@style/estilo_nacional"
+            android:autofillHints="" tools:targetApi="o"/>
 
     </LinearLayout>
 

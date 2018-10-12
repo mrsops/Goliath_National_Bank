@@ -10,5 +10,8 @@
     <string name="passwd">Cambiar clave</string>
     <string name="show_accounts">Ver Cuentas</string>
     <string name="income">Ingresos</string>
+    <string name="actual_pass">Contraseña actual</string>
+    <string name="new_pass">Nueva Contraseña</string>
+    <string name="repeat_pass">Repite la Contraseña</string>
 
 </resources>
