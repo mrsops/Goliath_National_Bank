@@ -1,18 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/gnb_background"
+    tools:context="com.simarro.practicas.goliath_national_bank.MainActivity$MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
 
-</android.support.constraint.ConstraintLayout>
+        >
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/berlian"
+            android:text="@string/user"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            tools:textColor="@android:color/darker_gray"
+            android:labelFor="@id/userInsert"/>
+
+        <EditText
+            android:id="@+id/userInsert"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:textSize="15sp"
+            android:fontFamily="@font/berlian"
+            android:inputType="textPersonName"
+            tools:textColor="@android:color/darker_gray"
+            android:importantForAutofill="no" tools:targetApi="o"/>
+
+        <TextView
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/berlian"
+            android:text="@string/pass"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            tools:textColor="@android:color/darker_gray"
+            android:labelFor="@id/passInsert"/>
+
+        <EditText
+            android:id="@+id/passInsert"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textSize="15sp"
+            tools:textColor="@android:color/darker_gray"
+            android:autofillHints="" tools:targetApi="o"/>
+
+        <Button
+            android:id="@+id/button"
+            android:tag="validar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="@string/validate"
+            android:onClick="onClick"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
