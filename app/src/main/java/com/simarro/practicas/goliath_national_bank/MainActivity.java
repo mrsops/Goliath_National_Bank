@@ -24,7 +24,11 @@ import com.simarro.practicas.goliath_bank.R;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+            this.usuario=usuario;
+            this.pass=pass;
+
             Banco banco = new Banco();
+
             Cuenta cuenta = new Cuenta("usuari", "usuari");
             banco.add(cuenta);
             asignarBanco(banco);
@@ -38,6 +42,7 @@ import com.simarro.practicas.goliath_bank.R;
             usuario = edUser.getText().toString();
             pass = edPass.getText().toString();
             Banco b = getBanco();
+
             if(getBanco().comprobarAcceso(usuario, pass) != null){
                 accederCuenta(getBanco().comprobarAcceso(usuario, pass));
                 startActivity(new Intent(MainActivity.this, MenuActivity.class));
@@ -45,6 +50,7 @@ import com.simarro.practicas.goliath_bank.R;
                 Toast.makeText(this, "Usuario: "+usuario, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Contraseña: "+pass, Toast.LENGTH_SHORT).show();
             }
+
 
 
         }

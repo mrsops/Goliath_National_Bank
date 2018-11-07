@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }else if(ingresos.getId()==v.getId()){
 
         }else if(operaciones.getId()==v.getId()){
-
+            startActivity(new Intent(MenuActivity.this, TransferenciaActivity.class));
         }else{
             Toast.makeText(this, "Pulsa un boton", Toast.LENGTH_SHORT);
         }

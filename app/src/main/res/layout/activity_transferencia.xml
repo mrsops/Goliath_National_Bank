@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gnb_background"
+    tools:context="com.simarro.practicas.goliath_national_bank.TransferenciaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textOrigin"
+                style="@style/estilo_nacional"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/berlian"
+                android:labelFor="@id/userInsert"
+                android:text="@string/origin"
+                android:textAlignment="textStart"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textDestiny"
+                style="@style/estilo_nacional"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/berlian"
+                android:labelFor="@id/passInsert"
+                android:text="@string/destiny"
+                android:textAlignment="textStart"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/inputOrigin"
+                style="@style/estilo_nacional"
+                android:labelFor="@id/inputOrigin"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="40dp"
+                android:ems="13"
+                android:fontFamily="@font/berlian"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="15sp"
+                tools:targetApi="o" />
+
+
+
+            <EditText
+                android:id="@+id/InputDestiny"
+                style="@style/estilo_nacional"
+                android:labelFor="@id/InputDestiny"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="40dp"
+                android:fontFamily="@font/berlian"
+                android:ems="13"
+                android:inputType="textPassword"
+                android:textSize="15sp"
+                tools:targetApi="o"
+                android:importantForAutofill="no" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textAmount"
+            style="@style/estilo_nacional"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/berlian"
+            android:labelFor="@id/passInsert"
+            android:text="@string/amount"
+            android:textAlignment="textStart"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/amountCoin"
+                android:labelFor="@id/amountCoin"
+                style="@style/estilo_nacional"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="3"
+                android:fontFamily="@font/berlian"
+                android:inputType="numberDecimal"
+                android:textSize="15sp"
+                tools:targetApi="o"
+                android:ems="13"
+                android:importantForAutofill="no" />
+
+            <Spinner
+                android:id="@+id/combo"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                style="@style/estilo_nacional"
+                android:fontFamily="@font/berlian"
+
+                ></Spinner>
+        </LinearLayout>
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/berlian"
+            android:text="@string/subject"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            style="@style/estilo_nacional"
+            android:labelFor="@id/passInsert"/>
+
+        <EditText
+            android:id="@+id/asunto"
+            style="@style/estilo_nacional"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:ems="13"
+            android:fontFamily="@font/berlian"
+            android:inputType="textPassword"
+            android:labelFor="@id/asunto"
+            android:textSize="15sp"
+            tools:targetApi="o" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <Button
+                android:id="@+id/btnAceptar"
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="@string/accept" />
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

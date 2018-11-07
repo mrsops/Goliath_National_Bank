@@ -13,5 +13,11 @@
     <string name="actual_pass">Contraseña actual</string>
     <string name="new_pass">Nueva Contraseña</string>
     <string name="repeat_pass">Repite la Contraseña</string>
+    <string name="amount">Importe</string>
+    <string name="subject">Asunto</string>
+    <string name="origin">Cuenta Origen</string>
+    <string name="destiny">Cuenta Destino</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
 
 </resources>

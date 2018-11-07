@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.simarro.practicas.goliath_national_bank.CambioPass" />
-        <activity android:name="com.simarro.practicas.goliath_national_bank.MenuActivity"></activity>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.MenuActivity" />
+        <activity android:name="com.simarro.practicas.goliath_national_bank.TransferenciaActivity"></activity>
     </application>
 
 </manifest>

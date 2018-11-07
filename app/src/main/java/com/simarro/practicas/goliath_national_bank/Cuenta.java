@@ -9,14 +9,14 @@ public class Cuenta {
 
     public Cuenta(String usuario, String contraseña) {
         this.usuario = usuario;
-        this.contraseña = DigestUtils.md5Hex(contraseña);
+        this.contraseña = contraseña;
     }
 
     public Cuenta() {
     }
 
     public boolean verifyUserAndPass(String usuario, String contraseña){
-        if(this.usuario.equals(usuario) && this.contraseña.equals(DigestUtils.md5Hex(contraseña))){
+        if(this.usuario.equals(usuario) && this.contraseña.equals(contraseña)){
             return true;
         }else{
             return false;
