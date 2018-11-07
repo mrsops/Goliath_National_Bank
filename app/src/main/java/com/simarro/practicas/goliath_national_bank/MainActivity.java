@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import static com.simarro.practicas.goliath_national_bank.Controlador.*;
 
 import com.simarro.practicas.goliath_bank.R;
 
@@ -23,6 +24,11 @@ import com.simarro.practicas.goliath_bank.R;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+            Banco banco = new Banco();
+            Cuenta cuenta = new Cuenta("usuari", "usuari");
+            banco.add(cuenta);
+            asignarBanco(banco);
+
         }
 
         @Override
@@ -31,12 +37,15 @@ import com.simarro.practicas.goliath_bank.R;
             EditText edPass = (EditText) findViewById(R.id.passInsert);
             usuario = edUser.getText().toString();
             pass = edPass.getText().toString();
-            if(v.getTag().equals("validar") && usuario.equals("usuario") && pass.equals("usuario") ){
+            Banco b = getBanco();
+            if(getBanco().comprobarAcceso(usuario, pass) != null){
+                accederCuenta(getBanco().comprobarAcceso(usuario, pass));
                 startActivity(new Intent(MainActivity.this, MenuActivity.class));
             }else{
                 Toast.makeText(this, "Usuario: "+usuario, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Contraseña: "+pass, Toast.LENGTH_SHORT).show();
             }
+
 
         }
 
