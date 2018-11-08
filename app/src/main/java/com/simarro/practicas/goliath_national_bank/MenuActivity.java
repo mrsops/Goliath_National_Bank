@@ -8,13 +8,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.simarro.practicas.goliath_bank.R;
+import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
+    private Cliente cliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
     }
 
     @Override
@@ -30,12 +33,16 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(MenuActivity.this, CambioPass.class));
 
         }else if(verCuentas.getId()==v.getId()){
+            Toast.makeText(MenuActivity.this, "Prueba de que el toast funciona", Toast.LENGTH_SHORT);
 
         }else if(cerrarSesion.getId()==v.getId()){
+            Toast.makeText(MenuActivity.this, "Prueba de que el toast funciona", Toast.LENGTH_SHORT);
 
         }else if(posicionGlobal.getId()==v.getId()){
+            Toast.makeText(MenuActivity.this, "Prueba de que el toast funciona", Toast.LENGTH_SHORT);
 
         }else if(ingresos.getId()==v.getId()){
+            Toast.makeText(MenuActivity.this, cliente.getNombre()+" "+this.cliente.getClaveSeguridad(), Toast.LENGTH_LONG).show();
 
         }else if(operaciones.getId()==v.getId()){
             startActivity(new Intent(MenuActivity.this, TransferenciaActivity.class));

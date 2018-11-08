@@ -9,9 +9,11 @@ import android.widget.Toast;
 import static com.simarro.practicas.goliath_national_bank.Controlador.*;
 
 import com.simarro.practicas.goliath_bank.R;
+import com.simarro.practicas.goliath_national_bank.bd.MiBancoOperacional;
+import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 
 
-    public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
         private String usuario;
@@ -24,14 +26,7 @@ import com.simarro.practicas.goliath_bank.R;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            this.usuario=usuario;
-            this.pass=pass;
 
-            Banco banco = new Banco();
-
-            Cuenta cuenta = new Cuenta("usuari", "usuari");
-            banco.add(cuenta);
-            asignarBanco(banco);
 
         }
 
@@ -41,15 +36,25 @@ import com.simarro.practicas.goliath_bank.R;
             EditText edPass = (EditText) findViewById(R.id.passInsert);
             usuario = edUser.getText().toString();
             pass = edPass.getText().toString();
-            Banco b = getBanco();
-
+            MiBancoOperacional miBOp = MiBancoOperacional.getInstance(this);
+            Cliente cliente = new Cliente();
+            cliente.setNif(usuario);
+            cliente.setClaveSeguridad(pass);
+            if (miBOp.login(cliente)!=null){
+                Intent menu = new Intent(MainActivity.this, MenuActivity.class);
+                menu.putExtra("Cliente", miBOp.login(cliente));
+                startActivity(menu);
+            }else{
+                Toast.makeText(this, "Usuario y contraseña erroneos. ", Toast.LENGTH_SHORT).show();
+            }
+            /*
             if(getBanco().comprobarAcceso(usuario, pass) != null){
                 accederCuenta(getBanco().comprobarAcceso(usuario, pass));
-                startActivity(new Intent(MainActivity.this, MenuActivity.class));
+
             }else{
-                Toast.makeText(this, "Usuario: "+usuario, Toast.LENGTH_SHORT).show();
+
                 Toast.makeText(this, "Contraseña: "+pass, Toast.LENGTH_SHORT).show();
-            }
+            }*/
 
 
 
