@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gnb_background"
-    tools:context="com.simarro.practicas.goliath_national_bank.CambioPass">
+    tools:context="com.simarro.practicas.goliath_national_bank.vista.CambioPass">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,10 +25,11 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/berlian"
             android:text="@string/actual_pass"
+            android:labelFor="@id/oldPassInsert"
             android:textAlignment="textStart"
             android:textSize="25sp"
             style="@style/estilo_nacional"
-            android:labelFor="@id/userInsert"/>
+            />
 
         <EditText
             android:id="@+id/oldPassInsert"
@@ -52,7 +53,7 @@
             android:textAlignment="textStart"
             android:textSize="25sp"
             style="@style/estilo_nacional"
-            android:labelFor="@id/passInsert"/>
+            android:labelFor="@id/newPassInsert"/>
 
         <EditText
             android:id="@+id/newPassInsert"
@@ -74,7 +75,7 @@
             android:textAlignment="textStart"
             android:textSize="25sp"
             style="@style/estilo_nacional"
-            android:labelFor="@id/passInsert"/>
+            android:labelFor="@id/repeatedInsert"/>
 
         <EditText
             android:id="@+id/repeatedInsert"
@@ -86,6 +87,15 @@
             android:textSize="15sp"
             style="@style/estilo_nacional"
             android:autofillHints="" tools:targetApi="o"/>
+
+        <Button
+            android:id="@+id/butonNewPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:onClick="onClick"
+            android:text="@string/accept" />
 
     </LinearLayout>
 

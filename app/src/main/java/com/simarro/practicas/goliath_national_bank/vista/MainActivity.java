@@ -1,4 +1,4 @@
-package com.simarro.practicas.goliath_national_bank;
+package com.simarro.practicas.goliath_national_bank.vista;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import static com.simarro.practicas.goliath_national_bank.Controlador.*;
 
 import com.simarro.practicas.goliath_bank.R;
 import com.simarro.practicas.goliath_national_bank.bd.MiBancoOperacional;
@@ -42,19 +41,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             cliente.setClaveSeguridad(pass);
             if (miBOp.login(cliente)!=null){
                 Intent menu = new Intent(MainActivity.this, MenuActivity.class);
-                menu.putExtra("Cliente", miBOp.login(cliente));
+                cliente = miBOp.login(cliente);
+                menu.putExtra("Cliente", cliente);
                 startActivity(menu);
             }else{
                 Toast.makeText(this, "Usuario y contraseña erroneos. ", Toast.LENGTH_SHORT).show();
             }
-            /*
-            if(getBanco().comprobarAcceso(usuario, pass) != null){
-                accederCuenta(getBanco().comprobarAcceso(usuario, pass));
-
-            }else{
-
-                Toast.makeText(this, "Contraseña: "+pass, Toast.LENGTH_SHORT).show();
-            }*/
 
 
 

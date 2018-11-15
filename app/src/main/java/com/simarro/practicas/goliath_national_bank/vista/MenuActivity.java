@@ -1,4 +1,4 @@
-package com.simarro.practicas.goliath_national_bank;
+package com.simarro.practicas.goliath_national_bank.vista;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +8,19 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.simarro.practicas.goliath_bank.R;
+import com.simarro.practicas.goliath_national_bank.bd.MiBancoOperacional;
 import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
     private Cliente cliente;
+    private MiBancoOperacional bancoOperacional;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
+        bancoOperacional = MiBancoOperacional.getInstance(this);
     }
 
     @Override
@@ -26,20 +29,25 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Button operaciones = findViewById(R.id.operations);
         Button verCuentas = findViewById(R.id.show_accounts);
         Button cerrarSesion = findViewById(R.id.close_sesion);
-        Button posicionGlobal = findViewById(R.id.pos_global);
+        Button posGlobal = findViewById(R.id.pos_global);
         Button ingresos = findViewById(R.id.income);
 
         if (clave.getId()== v.getId()){
-            startActivity(new Intent(MenuActivity.this, CambioPass.class));
+            Intent menu = new Intent(MenuActivity.this, CambioPass.class);
+            menu.putExtra("Cliente", cliente);
+            startActivity(menu);
 
         }else if(verCuentas.getId()==v.getId()){
-            Toast.makeText(MenuActivity.this, "Prueba de que el toast funciona", Toast.LENGTH_SHORT);
+            Intent cuentas = new Intent(this, Cuentas.class);
+            cuentas.putExtra("Cliente", cliente);
+            startActivity(cuentas);
 
         }else if(cerrarSesion.getId()==v.getId()){
-            Toast.makeText(MenuActivity.this, "Prueba de que el toast funciona", Toast.LENGTH_SHORT);
+            Intent menu = new Intent(MenuActivity.this, MainActivity.class);
+            startActivity(menu);
 
-        }else if(posicionGlobal.getId()==v.getId()){
-            Toast.makeText(MenuActivity.this, "Prueba de que el toast funciona", Toast.LENGTH_SHORT);
+        }else if(posGlobal.getId()==v.getId()){
+
 
         }else if(ingresos.getId()==v.getId()){
             Toast.makeText(MenuActivity.this, cliente.getNombre()+" "+this.cliente.getClaveSeguridad(), Toast.LENGTH_LONG).show();
@@ -47,7 +55,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }else if(operaciones.getId()==v.getId()){
             startActivity(new Intent(MenuActivity.this, TransferenciaActivity.class));
         }else{
-            Toast.makeText(this, "Pulsa un boton", Toast.LENGTH_SHORT);
+
         }
 
     }

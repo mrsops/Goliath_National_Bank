@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.simarro.practicas.goliath_national_bank.MenuActivity"
+    tools:context="com.simarro.practicas.goliath_national_bank.vista.MenuActivity"
     android:background="@drawable/gnb_background"
     >
 
@@ -81,7 +81,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/global"
             android:onClick="onClick"
-            android:text="@string/gblobal_pos"
+            android:text="@string/pos_global"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.0"

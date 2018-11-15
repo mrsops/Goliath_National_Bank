@@ -1,4 +1,4 @@
-package com.simarro.practicas.goliath_national_bank;
+package com.simarro.practicas.goliath_national_bank.vista;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

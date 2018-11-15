@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.simarro.practicas.goliath_national_bank.MainActivity">
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.simarro.practicas.goliath_national_bank.CambioPass" />
-        <activity android:name="com.simarro.practicas.goliath_national_bank.MenuActivity" />
-        <activity android:name="com.simarro.practicas.goliath_national_bank.TransferenciaActivity"></activity>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.CambioPass" />
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.MenuActivity" />
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.TransferenciaActivity" />
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Cuentas" />
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Movimientos"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,8 @@
     <string name="pass">Contraseña</string>
     <string name="user_placeholder">Tu nombre</string>
     <string name="validate">Validar</string>
-    <string name="gblobal_pos">Posicion Global</string>
+    <string name="pos_global">Posicion Global</string>
+    <string name="movements">Movimientos</string>
     <string name="operations">Operaciones</string>
     <string name="log_out">Cerrar Sesion</string>
     <string name="passwd">Cambiar clave</string>
