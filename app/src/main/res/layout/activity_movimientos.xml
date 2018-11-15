@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.simarro.practicas.goliath_national_bank.vista.Movimientos"
     android:background="@drawable/gnb_background"
-    style="@style/estilo_nacional">
+    style="@style/estilo_nacional"
+    android:id="@+id/listaMovimientos">
 
 </ListView>
