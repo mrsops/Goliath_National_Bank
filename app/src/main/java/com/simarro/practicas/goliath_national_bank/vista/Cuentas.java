@@ -26,20 +26,18 @@ public class Cuentas extends AppCompatActivity{
         setContentView(R.layout.activity_cuentas);
         ListView lista = (ListView)findViewById(R.id.listaCuentas);
 
-
-
         Cliente cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
         MiBancoOperacional bancoOperacional = MiBancoOperacional.getInstance(this);
         cliente = bancoOperacional.login(cliente);
 
-
         cuentas = bancoOperacional.getCuentas(cliente);
-        String movs[]=new String[cuentas.size()];
-        for (int i=0;i<movs.length;i++){
-            movs[i]=cuentas.get(i).getNumeroCuenta();
+
+        String numCuentas[]=new String[cuentas.size()];
+        for (int i=0;i<numCuentas.length;i++){
+            numCuentas[i]=cuentas.get(i).getNumeroCuenta();
         }
 
-        AdaptadorCustomizado adaptador = new AdaptadorCustomizado(this, android.R.layout.simple_list_item_1, movs);
+        AdaptadorCustomizado adaptador = new AdaptadorCustomizado(this, android.R.layout.simple_list_item_1, numCuentas);
         lista.setAdapter(adaptador);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,9 +48,9 @@ public class Cuentas extends AppCompatActivity{
                 Intent movimientos = new Intent(Cuentas.this, Movimientos.class);
                 movimientos.putExtra("Cuenta", c);
                 startActivity(movimientos);
+
             }
         });
-
     }
 
 

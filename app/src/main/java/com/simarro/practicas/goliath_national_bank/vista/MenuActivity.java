@@ -38,9 +38,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(menu);
 
         }else if(verCuentas.getId()==v.getId()){
+
             Intent cuentas = new Intent(this, Cuentas.class);
             cuentas.putExtra("Cliente", cliente);
             startActivity(cuentas);
+            Toast.makeText(this, "Esto funciona", Toast.LENGTH_SHORT).show();
 
         }else if(cerrarSesion.getId()==v.getId()){
             Intent menu = new Intent(MenuActivity.this, MainActivity.class);

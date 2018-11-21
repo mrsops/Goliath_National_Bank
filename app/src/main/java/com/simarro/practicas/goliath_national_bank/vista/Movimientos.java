@@ -27,7 +27,6 @@ public class Movimientos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Toast.makeText(this, "Algo", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_movimientos);
-        String[] datos = {"Elemento 1", "Elemento2"};
 
         ListView lista = (ListView)findViewById(R.id.listaMovimientos);
 
@@ -40,7 +39,6 @@ public class Movimientos extends AppCompatActivity {
         for (int i=0;i<movs.length;i++){
             movs[i]="Importe: "+movimientos.get(i).getImporte()+" Destino: "+movimientos.get(i).getCuentaDestino().getNumeroCuenta();
         }
-        Toast.makeText(this, cuenta.getNumeroCuenta(), Toast.LENGTH_SHORT).show();
 
         AdaptadorCustomizado adaptador = new AdaptadorCustomizado(this, android.R.layout.simple_list_item_1, movs);
         lista.setAdapter(adaptador);

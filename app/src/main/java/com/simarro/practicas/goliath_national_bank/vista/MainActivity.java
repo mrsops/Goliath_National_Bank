@@ -14,19 +14,13 @@ import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-
         private String usuario;
         private String pass;
-
-
-
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-
-
         }
 
         @Override

@@ -32,14 +32,22 @@ public class CambioPass extends AppCompatActivity implements View.OnClickListene
         EditText nuevaRepetida = (EditText) findViewById(R.id.repeatedInsert);
 
 
-        if (viejaContrasenya.getText().equals(cliente.getClaveSeguridad())){
+        if (viejaContrasenya.getText().toString().equals(cliente.getClaveSeguridad())){
 
             if(nuevaContrasenya.getText().toString().equals(nuevaRepetida.getText().toString())){
-                cliente.setClaveSeguridad(nuevaContrasenya.getText().toString());
-                bancoOperacional.changePassword(cliente);
-                Intent menu = new Intent(CambioPass.this, MenuActivity.class);
-                menu.putExtra("Cliente", cliente);
-                startActivity(menu);
+                String valor = nuevaContrasenya.getText().toString();
+                cliente.setClaveSeguridad(valor);
+                int resultado = bancoOperacional.changePassword(cliente);
+                if (resultado==1){
+
+                    Intent menu = new Intent(CambioPass.this, MenuActivity.class);
+                    menu.putExtra("Cliente", cliente);
+                    startActivity(menu);
+                }else{
+                    Toast.makeText(this, "No se ha podido cambiar la contraseña", Toast.LENGTH_SHORT).show();
+                }
+                
+                
             }else{
                 Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             }

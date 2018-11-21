@@ -39,7 +39,7 @@
             android:ems="13"
             android:textSize="15sp"
             android:fontFamily="@font/berlian"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             style="@style/estilo_nacional"
             android:importantForAutofill="no" tools:targetApi="o"/>
 
