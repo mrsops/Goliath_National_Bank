@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent menu = new Intent(MainActivity.this, MenuActivity.class);
                 cliente = miBOp.login(cliente);
                 menu.putExtra("Cliente", cliente);
+
                 startActivity(menu);
+                finish();
             }else{
                 Toast.makeText(this, "Usuario y contraseña erroneos. ", Toast.LENGTH_SHORT).show();
             }

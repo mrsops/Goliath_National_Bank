@@ -21,7 +21,7 @@
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.TransferenciaActivity" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Cuentas" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Movimientos" />
-        <activity android:name="com.simarro.practicas.goliath_national_bank.fragments.MovimientosFragment"></activity>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Operaciones_Activity"></activity>
     </application>
 
 </manifest>
