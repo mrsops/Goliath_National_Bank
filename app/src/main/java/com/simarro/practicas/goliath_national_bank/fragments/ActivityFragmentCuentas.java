@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class ActivityFragmentCuentas extends Fragment{
     private ListView listado;
     private CuentasListener listener;
+    private MiBancoOperacional miBancoOperacional = MiBancoOperacional.getInstance(this.getContext());
 
 
     @Override
@@ -37,9 +38,7 @@ public class ActivityFragmentCuentas extends Fragment{
         super.onActivityCreated(savedInstanceState);
         listado = (ListView) getView().findViewById(R.id.ListCuentas);
         Cliente cliente = (Cliente) this.getActivity().getIntent().getSerializableExtra("Cliente");
-        //Cliente cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
-        MiBancoOperacional bancoOperacional = MiBancoOperacional.getInstance(this.getContext());
-        ArrayList<Cuenta> cuentas = bancoOperacional.getCuentas(cliente);
+        ArrayList<Cuenta> cuentas = miBancoOperacional.getCuentas(cliente);
         listado.setAdapter(new AdaptadorCuentas(this ,cuentas ));
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -53,6 +52,15 @@ public class ActivityFragmentCuentas extends Fragment{
         });
     }
 
+    public void mostrarCuentas(Cliente cliente){
+        ArrayList<Cuenta> cuentas = miBancoOperacional.getCuentas(cliente);
+        listado.setAdapter(new AdaptadorCuentas(this ,cuentas ));
+    }
+
+
+    public interface CuentasListener {
+        void onCuentaSeleccionada(Cuenta c);
+    }
 
     public void setCuentasListener(CuentasListener listener){
         this.listener = listener;
