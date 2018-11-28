@@ -19,24 +19,21 @@ import java.util.ArrayList;
 
 public class Activity_Fragment_Movimientos extends Fragment {
     private ListView listado;
+    private MiBancoOperacional bancoOperacional;
+    private ArrayList<Movimiento> movimientosCuenta;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_fragment_cuentas, container, false);
+        return inflater.inflate(R.layout.layout_fragment_movimientos, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-        listado = (ListView) getView().findViewById(R.id.ListMovimientos);
-        Cuenta cuenta = (Cuenta) this.getActivity().getIntent().getSerializableExtra("Cuenta");
         //Cliente cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
-        MiBancoOperacional bancoOperacional = MiBancoOperacional.getInstance(this.getContext());
-        ArrayList<Movimiento> movimientosCuenta = cuenta.getListaMovimientos();
-        listado.setAdapter(new AdaptadorMovimientos(this ,movimientosCuenta ));
+
 
         /*
         listado = (ListView) getView().findViewById(R.id.ListCuentas);
@@ -46,5 +43,12 @@ public class Activity_Fragment_Movimientos extends Fragment {
         ArrayList<Movimiento> movimientos = bancoOperacional.getCuentas(cliente);
         listado.setAdapter(new AdaptadorMovimientos(this,  ));
         */
+    }
+
+    public void mostrarMovimientos(Cuenta c){
+        listado = (ListView) getView().findViewById(R.id.ListMovimientos);
+        this.bancoOperacional = MiBancoOperacional.getInstance(this.getContext());
+        movimientosCuenta= this.bancoOperacional.getMovimientos(c);
+        listado.setAdapter(new AdaptadorMovimientos(this, movimientosCuenta ));
     }
 }

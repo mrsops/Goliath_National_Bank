@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(menu);
 
         }else if(verCuentas.getId()==v.getId()){
-            Intent cuentas = new Intent(this, Operaciones_Activity.class);
+            Intent cuentas = new Intent(this, VerCuentasActivity.class);
             cuentas.putExtra("Cliente", cliente);
             startActivity(cuentas);
             finish();

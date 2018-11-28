@@ -20,7 +20,7 @@ public class AdaptadorCuentas extends ArrayAdapter<Cuenta>{
     ArrayList<Cuenta> cuentas;
 
     public AdaptadorCuentas(Fragment context, ArrayList<Cuenta> cuentas) {
-        super(context.getActivity(), R.layout.activity_cuentas, cuentas);
+        super(context.getActivity(), R.layout.ver_cuentas_activity, cuentas);
         this.cuentas = cuentas;
         this.context = context.getActivity();
     }

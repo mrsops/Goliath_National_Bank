@@ -19,7 +19,7 @@ public class AdaptadorMovimientos extends ArrayAdapter<Movimiento>{
     ArrayList<Movimiento> movimientos;
 
     public AdaptadorMovimientos(Fragment context, ArrayList<Movimiento> movimientos) {
-        super(context.getActivity(), R.layout.layout_activity_movimientos, movimientos);
+        super(context.getActivity(), R.layout.activity_ver_movimientos, movimientos);
         this.movimientos = movimientos;
         this.context = context.getActivity();
     }
@@ -27,7 +27,7 @@ public class AdaptadorMovimientos extends ArrayAdapter<Movimiento>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View item = inflater.inflate(R.layout.layout_elemento_cuentas, null);
+        View item = inflater.inflate(R.layout.layout_elemento_movimiento, null);
 
         TextView lblImporte = (TextView) item.findViewById(R.id.LblImporte);
         lblImporte.setText("Importe: "+movimientos.get(position).getImporte());

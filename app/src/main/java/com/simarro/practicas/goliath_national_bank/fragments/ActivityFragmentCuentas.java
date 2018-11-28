@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,6 +23,14 @@ import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
 import java.util.ArrayList;
 
 public class ActivityFragmentCuentas extends Fragment{
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
+
     private ListView listado;
     private CuentasListener listener;
     private MiBancoOperacional miBancoOperacional = MiBancoOperacional.getInstance(this.getContext());
@@ -30,7 +39,6 @@ public class ActivityFragmentCuentas extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_cuentas, container, false);
-
     }
 
     @Override
@@ -40,7 +48,9 @@ public class ActivityFragmentCuentas extends Fragment{
         Cliente cliente = (Cliente) this.getActivity().getIntent().getSerializableExtra("Cliente");
         ArrayList<Cuenta> cuentas = miBancoOperacional.getCuentas(cliente);
         listado.setAdapter(new AdaptadorCuentas(this ,cuentas ));
-        listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        listado.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(listener!=null){
@@ -50,6 +60,8 @@ public class ActivityFragmentCuentas extends Fragment{
                 }
             }
         });
+
+        //setCuentasListener((CuentasListener) this.getActivity());
     }
 
     public void mostrarCuentas(Cliente cliente){
@@ -58,11 +70,10 @@ public class ActivityFragmentCuentas extends Fragment{
     }
 
 
-    public interface CuentasListener {
-        void onCuentaSeleccionada(Cuenta c);
-    }
 
     public void setCuentasListener(CuentasListener listener){
         this.listener = listener;
     }
+
+
 }

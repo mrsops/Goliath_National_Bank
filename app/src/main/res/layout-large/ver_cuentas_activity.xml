@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="com.simarro.practicas.goliath_national_bank.vista.Operaciones_Activity"
+    tools:context="com.simarro.practicas.goliath_national_bank.vista.VerCuentasActivity"
 
     >
     <fragment
@@ -16,6 +16,7 @@
         android:layout_height="match_parent"/>
 
     <fragment
+        class="com.simarro.practicas.goliath_national_bank.fragments.Activity_Fragment_Movimientos"
         android:layout_width="0px"
         android:layout_height="match_parent"
         android:layout_weight="70"
