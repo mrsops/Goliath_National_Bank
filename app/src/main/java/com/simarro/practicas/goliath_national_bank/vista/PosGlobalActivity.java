@@ -1,48 +1,76 @@
 package com.simarro.practicas.goliath_national_bank.vista;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.simarro.practicas.goliath_bank.R;
+import com.simarro.practicas.goliath_national_bank.fragments.ActivityFragmentCuentas;
 import com.simarro.practicas.goliath_national_bank.fragments.Activity_Fragment_Movimientos;
+import com.simarro.practicas.goliath_national_bank.fragments.CuentasListener;
 import com.simarro.practicas.goliath_national_bank.fragments.Dialogo;
 import com.simarro.practicas.goliath_national_bank.fragments.MovimientosListener;
 import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
 import com.simarro.practicas.goliath_national_bank.pojo.Movimiento;
 
-public class VerMovimientosActivity extends AppCompatActivity implements MovimientosListener {
+import java.util.ArrayList;
+
+public class PosGlobalActivity extends AppCompatActivity implements CuentasListener, MovimientosListener {
+    private ArrayList<Cuenta> cuentas;
     private Cliente cliente;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_movimientos);
+        setContentView(R.layout.ver_cuentas_activity);
         cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
-        Activity_Fragment_Movimientos fragMovs = (Activity_Fragment_Movimientos) getSupportFragmentManager().findFragmentById(R.id.FragmentoMovimientos);
-        if( fragMovs == null){
+        ActivityFragmentCuentas frgCuentas = (ActivityFragmentCuentas) getSupportFragmentManager().findFragmentById(R.id.FrgCuentas);
+        if( frgCuentas == null){
             Toast.makeText(this, "No se ha retornado nada, el fragment es null", Toast.LENGTH_SHORT).show();
         }else{
-            fragMovs.setMovimientosListener(this);
+            frgCuentas.setCuentasListener(this);
         }
 
-        Cuenta c = (Cuenta) getIntent().getSerializableExtra("Cuenta");
-        
-        mostrarMovimientos(c);
+
+
+        //frgCuentas.mostrarCuentas();
 
     }
 
-    public void mostrarMovimientos(Cuenta c){
-        Activity_Fragment_Movimientos fragMovs = (Activity_Fragment_Movimientos) getSupportFragmentManager().findFragmentById(R.id.FragmentoMovimientos);
-        if (fragMovs==null){
-            Toast.makeText(this, "Esto esta a null", Toast.LENGTH_SHORT).show();
-        }
-        fragMovs.mostrarMovimientos(c);
 
+    @Override
+    public void onCuentaSeleccionada(Cuenta c) {
+        cambiarMovimientos(c);
+    }
+
+
+    public void cambiarMovimientos(Cuenta c){
+        Activity_Fragment_Movimientos fragmentMovs = (Activity_Fragment_Movimientos) getSupportFragmentManager().findFragmentById(R.id.FrgMovimientos);
+        if(fragmentMovs == null){
+            Intent movs = new Intent(this, VerMovimientosActivity.class);
+            movs.putExtra("Cuenta", c);
+            movs.putExtra("Cliente", cliente);
+            startActivity(movs);
+        }else{
+            fragmentMovs.mostrarMovimientos(c);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(this, MenuActivity.class);
+        menu.putExtra("Cliente", cliente);
+        startActivity(menu);
+        finish();
     }
 
     @Override
@@ -50,7 +78,6 @@ public class VerMovimientosActivity extends AppCompatActivity implements Movimie
         FragmentManager fragmentManager = this.getSupportFragmentManager();
         Dialogo dialogo = Dialogo.newInstance((Movimiento) m);
         dialogo.show(fragmentManager, "tagConfirmacion");
-
 
     }
 
@@ -77,13 +104,13 @@ public class VerMovimientosActivity extends AppCompatActivity implements Movimie
             case R.id.close_sesion_toolbar:
                 Intent main = new Intent(this, MainActivity.class);
                 startActivity(main);
-                finish();
+                this.finish();
                 return true;
 
             case R.id.operations_toolbar:
-                Intent transf = new Intent(this, TransferenciaActivity.class);
-                transf.putExtra("Cliente",cliente);
-                startActivity(transf);
+                Intent transferencias = new Intent(this, TransferenciaActivity.class);
+                transferencias.putExtra("Cliente", cliente);
+                startActivity(transferencias);
                 finish();
                 return true;
 
@@ -99,13 +126,5 @@ public class VerMovimientosActivity extends AppCompatActivity implements Movimie
 
 
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent posGlobal = new Intent(this, PosGlobalActivity.class);
-        posGlobal.putExtra("Cliente", cliente);
-        startActivity(posGlobal);
-        finish();
     }
 }

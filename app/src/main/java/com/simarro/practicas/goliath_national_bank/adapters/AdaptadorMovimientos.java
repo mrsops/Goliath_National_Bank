@@ -14,6 +14,8 @@ import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
 import com.simarro.practicas.goliath_national_bank.pojo.Movimiento;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 public class AdaptadorMovimientos extends ArrayAdapter<Movimiento>{
     Activity context;
     ArrayList<Movimiento> movimientos;
@@ -33,9 +35,11 @@ public class AdaptadorMovimientos extends ArrayAdapter<Movimiento>{
         lblImporte.setText("Importe: "+movimientos.get(position).getImporte());
 
         TextView lblFecha = (TextView) item.findViewById(R.id.LblFecha);
-        lblFecha.setText("Fecha: "+movimientos.get(position).getFechaOperacion());
+        Date date = movimientos.get(position).getFechaOperacion();
+        String fecha = date.getDate()+"/"+(date.getMonth()+1)+"/"+(date.getYear()+1900)+"  "+date.getHours()+":"+date.getMinutes();
+        lblFecha.setText("Fecha: "+fecha);
 
-        TextView lblDescripcion = (TextView) item.findViewById(R.id.LblFecha);
+        TextView lblDescripcion = (TextView) item.findViewById(R.id.LblDescripcion);
         lblDescripcion.setText("Asunto: "+movimientos.get(position).getDescripcion());
 
 
