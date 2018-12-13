@@ -26,6 +26,9 @@ import java.util.ArrayList;
 public class PosGlobalActivity extends AppCompatActivity implements CuentasListener, MovimientosListener {
     private ArrayList<Cuenta> cuentas;
     private Cliente cliente;
+    private Activity_Fragment_Movimientos fragmentMovs;
+    private ActivityFragmentCuentas frgCuentas;
+
 
 
     @Override
@@ -33,11 +36,14 @@ public class PosGlobalActivity extends AppCompatActivity implements CuentasListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cuentas_activity);
         cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
-        ActivityFragmentCuentas frgCuentas = (ActivityFragmentCuentas) getSupportFragmentManager().findFragmentById(R.id.FrgCuentas);
-        if( frgCuentas == null){
-            Toast.makeText(this, "No se ha retornado nada, el fragment es null", Toast.LENGTH_SHORT).show();
+        this.frgCuentas = (ActivityFragmentCuentas) getSupportFragmentManager().findFragmentById(R.id.FrgCuentas);
+        this.fragmentMovs = (Activity_Fragment_Movimientos) getSupportFragmentManager().findFragmentById(R.id.FrgMovimientos);
+
+        if( this.frgCuentas != null){
+            this.frgCuentas.setCuentasListener(this);
         }else{
-            frgCuentas.setCuentasListener(this);
+            Toast.makeText(this, "No se ha retornado nada, el fragment es null", Toast.LENGTH_SHORT).show();
+
         }
 
 
@@ -54,14 +60,14 @@ public class PosGlobalActivity extends AppCompatActivity implements CuentasListe
 
 
     public void cambiarMovimientos(Cuenta c){
-        Activity_Fragment_Movimientos fragmentMovs = (Activity_Fragment_Movimientos) getSupportFragmentManager().findFragmentById(R.id.FrgMovimientos);
-        if(fragmentMovs == null){
+        if(this.fragmentMovs == null){
             Intent movs = new Intent(this, VerMovimientosActivity.class);
             movs.putExtra("Cuenta", c);
             movs.putExtra("Cliente", cliente);
             startActivity(movs);
         }else{
             fragmentMovs.mostrarMovimientos(c);
+            fragmentMovs.setMovimientosListener(this);
         }
     }
 

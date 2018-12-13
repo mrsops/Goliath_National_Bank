@@ -16,6 +16,7 @@
         android:layout_height="0px"/>
 
     <fragment
+        class="com.simarro.practicas.goliath_national_bank.fragments.Activity_Fragment_Movimientos"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="70"
