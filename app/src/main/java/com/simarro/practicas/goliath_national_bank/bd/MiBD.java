@@ -1,6 +1,7 @@
 package com.simarro.practicas.goliath_national_bank.bd;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -8,6 +9,8 @@ import com.simarro.practicas.goliath_national_bank.dao.CuentaDAO;
 import com.simarro.practicas.goliath_national_bank.dao.MovimientoDAO;
 
 import com.simarro.practicas.goliath_national_bank.dao.ClienteDAO;
+import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
+import com.simarro.practicas.goliath_national_bank.pojo.Movimiento;
 
 
 public class MiBD extends SQLiteOpenHelper {
@@ -77,6 +80,21 @@ public class MiBD extends SQLiteOpenHelper {
 
         insercionDatos(db);
         Log.i("SQLite", "Se crea la base de datos " + database + " version " + version);
+    }
+
+    public void insercionMovimiento(Movimiento m){
+        db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe,idcuentaorigen, idcuentadestino) VALUES (null, null, " +m.getTipo()+", "+m.getFechaOperacion().getTime()+", '"+m.getDescripcion()+"', "+m.getImporte()+","+m.getCuentaOrigen().getId()+", "+m.getCuentaDestino().getId()+");");
+    }
+    public void actualizarSaldo(Cuenta c){
+        db.execSQL("UPDATE cuentas SET saldoactual= "+c.getSaldoActual()+" WHERE banco='"+c.getBanco()+"'AND sucursal='"+c.getSucursal()+"' AND dc='"+c.getDc()+"' AND numerocuenta='"+c.getNumeroCuenta()+"';");
+    }
+    public boolean existeCuenta(String banco,String sucursal,String dc,String numCuenta){
+        String sql="SELECT numerocuenta FROM cuentas WHERE banco='"+banco+"' AND sucursal='"+sucursal+"' AND dc='"+dc+"' AND numerocuenta='"+numCuenta+"';";
+        Cursor c = db.rawQuery(sql,null);
+        if (c.getCount() > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override

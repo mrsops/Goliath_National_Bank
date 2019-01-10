@@ -57,7 +57,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(MenuActivity.this, cliente.getNombre()+" "+this.cliente.getClaveSeguridad(), Toast.LENGTH_LONG).show();
 
         }else if(operaciones.getId()==v.getId()){
-            startActivity(new Intent(MenuActivity.this, TransferenciaActivity.class));
+            startActivity(new Intent(MenuActivity.this, Transferencias.class));
             finish();
         }else{
 
@@ -92,7 +92,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
                 
             case R.id.operations_toolbar:
-                Intent transf = new Intent(this, TransferenciaActivity.class);
+                Intent transf = new Intent(this, Transferencias.class);
                 transf.putExtra("Cliente",cliente);
                 startActivity(transf);
                 finish();

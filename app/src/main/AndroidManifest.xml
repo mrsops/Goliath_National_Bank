@@ -18,7 +18,7 @@
         </activity>
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.CambioPass" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.MenuActivity" />
-        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.TransferenciaActivity" />
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.TransferenciaActivity_old" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Movimientos" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.PosGlobalActivity" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.VerMovimientosActivity"></activity>

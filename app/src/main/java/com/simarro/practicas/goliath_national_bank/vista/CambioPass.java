@@ -96,7 +96,7 @@ public class CambioPass extends AppCompatActivity implements View.OnClickListene
                 return true;
 
             case R.id.operations_toolbar:
-                Intent transferencias = new Intent(this, TransferenciaActivity.class);
+                Intent transferencias = new Intent(this, Transferencias.class);
                 transferencias.putExtra("Cliente", cliente);
                 startActivity(transferencias);
                 finish();

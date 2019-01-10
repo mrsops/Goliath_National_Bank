@@ -81,7 +81,7 @@ public class VerMovimientosActivity extends AppCompatActivity implements Movimie
                 return true;
 
             case R.id.operations_toolbar:
-                Intent transf = new Intent(this, TransferenciaActivity.class);
+                Intent transf = new Intent(this, TransferenciaActivity_old.class);
                 transf.putExtra("Cliente",cliente);
                 startActivity(transf);
                 finish();

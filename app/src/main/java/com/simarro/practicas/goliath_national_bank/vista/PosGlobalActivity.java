@@ -1,12 +1,9 @@
 package com.simarro.practicas.goliath_national_bank.vista;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -114,7 +111,7 @@ public class PosGlobalActivity extends AppCompatActivity implements CuentasListe
                 return true;
 
             case R.id.operations_toolbar:
-                Intent transferencias = new Intent(this, TransferenciaActivity.class);
+                Intent transferencias = new Intent(this, Transferencias.class);
                 transferencias.putExtra("Cliente", cliente);
                 startActivity(transferencias);
                 finish();

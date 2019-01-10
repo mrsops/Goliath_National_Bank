@@ -7,14 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.AdapterView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.simarro.practicas.goliath_bank.R;
 import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 
-public class TransferenciaActivity extends AppCompatActivity {
+public class TransferenciaActivity_old extends AppCompatActivity {
     private Spinner comboMonedas;
     private String[] tipoMonedas;
     private Cliente cliente;
@@ -24,7 +22,7 @@ public class TransferenciaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transferencia);
+        setContentView(R.layout.activity_transferencia_old);
         cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
         tipoMonedas = new String[]{"€", "$"};
         adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tipoMonedas);
@@ -70,7 +68,7 @@ public class TransferenciaActivity extends AppCompatActivity {
                 return true;
 
             case R.id.operations_toolbar:
-                Intent transf = new Intent(this, TransferenciaActivity.class);
+                Intent transf = new Intent(this, TransferenciaActivity_old.class);
                 transf.putExtra("Cliente",cliente);
                 startActivity(transf);
                 finish();
