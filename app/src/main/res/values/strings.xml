@@ -9,7 +9,7 @@
     <string name="operations">Operaciones</string>
     <string name="log_out">Cerrar Sesion</string>
     <string name="passwd">Cambiar clave</string>
-    <string name="at_cliente">Atencion al cliente</string>
+    <string name="cajeros">Cajeros</string>
     <string name="income">Ingresos</string>
     <string name="actual_pass">Contraseña actual</string>
     <string name="new_pass">Nueva Contraseña</string>
@@ -21,8 +21,38 @@
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <string name="action_settings">Ajustes</string>
-
+    <string name="cancelar">Cancelar</string>
+    <string name="pref_idioma">Idioma</string>
+    <string name="pref_sum_idioma">Idioma de la aplicación</string>
+    <string name="pref_tit_idioma">Idioma</string>
+    <string name="pref_ori">Origen de datos</string>
+    <string name="pref_origen_sum">Origen de los datos</string>
+    <string name="pref_origen_tit">Origen</string>
+    <string name="pref_musica_sum">Escuchar la música mientras se ejecuta la aplicación</string>
+    <string name="pref_musica_tit">Música</string>
+    <string name="pref_video_sum">Mostrará un video de bienvenida</string>
+    <string name="pref_vidio_tit">Video Bienvenida</string>
+    <string name="guardar">Guardar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="seguro_borrar">¿Seguro que quieres borrar?</string>
+    <string name="lblZoom">Zoom</string>
+    <string name="longitud">Longitud</string>
+    <string name="latitud">Latitud</string>
+    <string name="direccion">Direccion</string>
+    <string name="bcajeros">Cajeros</string>
 
+    <string-array name="pref_pais">
+        <item>Español</item>
+        <item>Ingles</item>
+    </string-array>
+    <string-array name="pref_cod_pais">
+        <item>ESP</item>
+        <item>ING</item>
+    </string-array>
+
+    <string-array name="pref_origen">
+        <item>Local</item>
+        <item>Servicio Web</item>
+    </string-array>
 </resources>

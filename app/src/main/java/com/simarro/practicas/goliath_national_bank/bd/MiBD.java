@@ -5,9 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.simarro.practicas.goliath_national_bank.dao.CajeroDAO;
 import com.simarro.practicas.goliath_national_bank.dao.CuentaDAO;
 import com.simarro.practicas.goliath_national_bank.dao.MovimientoDAO;
-
+import static com.simarro.practicas.goliath_national_bank.pojo.Constantes.*;
 import com.simarro.practicas.goliath_national_bank.dao.ClienteDAO;
 import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
 import com.simarro.practicas.goliath_national_bank.pojo.Movimiento;
@@ -29,12 +31,14 @@ public class MiBD extends SQLiteOpenHelper {
     //Instruccion SQL para crear la tabla de movimientos
     private String sqlCreacionMovimientos = "CREATE TABLE movimientos ( id INTEGER PRIMARY KEY AUTOINCREMENT, tipo INTEGER, fechaoperacion LONG," +
             " descripcion STRING, importe FLOAT, idcuentaorigen INTEGER, idcuentadestino INTEGER);";
+    private String sqlCreacionCajeros = "CREATE TABLE " + CAJEROS_TABLE + " (" + FIELD_CAJEROS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + FIELD_DIRECCION + " STRING, " + FIELD_LAT + " STRING," + FIELD_LNG + " STRING," + FIELD_ZOOM + " STRING);";
 
 
     private static MiBD instance = null;
 
     private static ClienteDAO clienteDAO;
     private static CuentaDAO cuentaDAO;
+    private static CajeroDAO cajeroDAO;
 
     public ClienteDAO getClienteDAO() {
         return clienteDAO;
@@ -47,6 +51,10 @@ public class MiBD extends SQLiteOpenHelper {
         return movimientoDAO;
     }
 
+    public static CajeroDAO getCajeroDAO() {
+        return cajeroDAO;
+    }
+
     private static MovimientoDAO movimientoDAO;
 
     public static MiBD getInstance(Context context) {
@@ -56,6 +64,7 @@ public class MiBD extends SQLiteOpenHelper {
             clienteDAO = new ClienteDAO();
             cuentaDAO = new CuentaDAO();
             movimientoDAO = new MovimientoDAO();
+            cajeroDAO = new CajeroDAO(context);
         }
         return instance;
     }
@@ -67,7 +76,7 @@ public class MiBD extends SQLiteOpenHelper {
 
     /**
      * Constructor de clase
-     * */
+     */
     protected MiBD(Context context) {
         super( context, database, null, version );
     }
@@ -77,6 +86,7 @@ public class MiBD extends SQLiteOpenHelper {
         db.execSQL(sqlCreacionClientes);
         db.execSQL(sqlCreacionCuentas);
         db.execSQL(sqlCreacionMovimientos);
+        db.execSQL(sqlCreacionCajeros);
 
         insercionDatos(db);
         Log.i("SQLite", "Se crea la base de datos " + database + " version " + version);
@@ -103,13 +113,15 @@ public class MiBD extends SQLiteOpenHelper {
         if ( newVersion > oldVersion )
         {
             //elimina tabla
-            db.execSQL( "DROP TABLE IF EXISTS clientes" );
-            db.execSQL( "DROP TABLE IF EXISTS cuentas" );
-            db.execSQL( "DROP TABLE IF EXISTS movimientos" );
+            db.execSQL("DROP TABLE IF EXISTS clientes");
+            db.execSQL("DROP TABLE IF EXISTS cuentas");
+            db.execSQL("DROP TABLE IF EXISTS movimientos");
+            db.execSQL("DROP TABLE IF EXISTS cajeros");
             //y luego creamos la nueva tabla
             db.execSQL(sqlCreacionClientes);
             db.execSQL(sqlCreacionCuentas);
             db.execSQL(sqlCreacionMovimientos);
+            db.execSQL(sqlCreacionCajeros);
 
             insercionDatos(db);
             Log.i("SQLite", "Se actualiza versión de la base de datos, New version= " + newVersion  );
@@ -174,6 +186,15 @@ public class MiBD extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe, idcuentaorigen, idcuentadestino) VALUES (null, null, 0, 1423263780000, 'Ingreso Nómina Ayuntamiento Valencia Enero 2015', 2150.5, 19, 1);");
 
 
+        //Insertamos los cajeros
+        db.execSQL("INSERT INTO " + CAJEROS_TABLE + " (rowid, " + FIELD_CAJEROS_ID + "," + FIELD_DIRECCION + "," + FIELD_LAT + "," + FIELD_LNG + "," + FIELD_ZOOM + ") VALUES (null,null,'Carrer del Clariano, 1, 46021 Valencia, Valencia, España',39.47600769999999,-0.3524475000000393,'');");
+        db.execSQL("INSERT INTO " + CAJEROS_TABLE + " (rowid, " + FIELD_CAJEROS_ID + "," + FIELD_DIRECCION + "," + FIELD_LAT + "," + FIELD_LNG + "," + FIELD_ZOOM + ") VALUES (null,null,'Avinguda del Cardenal Benlloch, 65, 46021 València, Valencia, España',39.4710366,-0.3547525000000178,'');");
+        db.execSQL("INSERT INTO " + CAJEROS_TABLE + " (rowid, " + FIELD_CAJEROS_ID + "," + FIELD_DIRECCION + "," + FIELD_LAT + "," + FIELD_LNG + "," + FIELD_ZOOM + ") VALUES (null,null,'Av. del Port, 237, 46011 València, Valencia, España',39.46161999999999,-0.3376299999999901,'');");
+        db.execSQL("INSERT INTO " + CAJEROS_TABLE + " (rowid, " + FIELD_CAJEROS_ID + "," + FIELD_DIRECCION + "," + FIELD_LAT + "," + FIELD_LNG + "," + FIELD_ZOOM + ") VALUES (null,null,'Carrer del Batxiller, 6, 46010 València, Valencia, España',39.4826729,-0.3639118999999482,'');");
+        db.execSQL("INSERT INTO " + CAJEROS_TABLE + " (rowid, " + FIELD_CAJEROS_ID + "," + FIELD_DIRECCION + "," + FIELD_LAT + "," + FIELD_LNG + "," + FIELD_ZOOM + ") VALUES (null,null,'Av. del Regne de València, 2, 46005 València, Valencia, España',39.4647669,-0.3732760000000326,'');");
+
     }
+
+
 
 }

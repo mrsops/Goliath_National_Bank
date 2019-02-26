@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Button operaciones = findViewById(R.id.operations);
         Button posGlobal = findViewById(R.id.pos_global);
         Button cerrarSesion = findViewById(R.id.close_sesion);
-        Button atCliente = findViewById(R.id.atCliente);
+        Button cajeros = findViewById(R.id.cajeros);
         Button ingresos = findViewById(R.id.income);
 
         if (clave.getId()== v.getId()){
@@ -50,7 +50,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(menu);
             finish();
 
-        }else if(atCliente.getId()==v.getId()){
+        }else if(cajeros.getId()==v.getId()){
+            if(esAdmin(this.cliente)){
+                Intent intent = new Intent(this, CajerosActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "Solo los administradores pueden acceder a este apartado", Toast.LENGTH_LONG).show();
+            }
 
 
         }else if(ingresos.getId()==v.getId()){
@@ -75,7 +81,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_settings_toolbar:
-                Toast.makeText(this, "Esto de momento no esta implementado", Toast.LENGTH_SHORT).show();
+                Intent settings = new Intent(this, PreferenciasActivity.class);
+                startActivity(settings);
                 return true;
                 
             case R.id.change_pass_toolbar:
@@ -85,10 +92,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 return true;
                 
-            case R.id.close_sesion_toolbar:
-                Intent main = new Intent(this, MainActivity.class);
-                startActivity(main);
-                finish();
+
+            case R.id.cajeros_toolbar:
+                if(esAdmin(this.cliente)){
+                    Intent intent = new Intent(this, CajerosActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this, "Solo los administradores pueden acceder a este apartado", Toast.LENGTH_LONG).show();
+                }
                 return true;
                 
             case R.id.operations_toolbar:
@@ -97,11 +108,17 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(transf);
                 finish();
                 return true;
+
                 
             case R.id.pos_global_toolbar:
                 Intent posGlobalActivity = new Intent(this, PosGlobalActivity.class);
                 posGlobalActivity.putExtra("Cliente", cliente);
                 startActivity(posGlobalActivity);
+                finish();
+                return true;
+            case R.id.close_sesion_toolbar:
+                Intent main = new Intent(this, MainActivity.class);
+                startActivity(main);
                 finish();
                 return true;
 
@@ -110,5 +127,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 
                 
         }
+    }
+    public boolean esAdmin(Cliente cliente) {
+        return cliente.getNif().equals("11111111A");
     }
 }

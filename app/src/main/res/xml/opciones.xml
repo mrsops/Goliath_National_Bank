@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/action_settings">
+        <ListPreference
+            android:dialogTitle="@string/pref_idioma"
+            android:entries="@array/pref_pais"
+            android:entryValues="@array/pref_cod_pais"
+            android:key="pref_pais_key"
+            android:summary="@string/pref_sum_idioma"
+            android:title="@string/pref_tit_idioma" />
+
+        <MultiSelectListPreference
+            android:dialogTitle="@string/pref_ori"
+            android:entries="@array/pref_origen"
+            android:entryValues="@array/pref_origen"
+            android:key="pref_origen_key"
+            android:summary="@string/pref_origen_sum"
+            android:title="@string/pref_origen_tit" />
+
+        <CheckBoxPreference
+            android:key="pref_musica_key"
+            android:summary="@string/pref_musica_sum"
+            android:title="@string/pref_musica_tit" />
+
+        <CheckBoxPreference
+            android:key="pref_video_key"
+            android:summary="@string/pref_video_sum"
+            android:title="@string/pref_vidio_tit" />
+
+
+    </PreferenceCategory>
+</PreferenceScreen>

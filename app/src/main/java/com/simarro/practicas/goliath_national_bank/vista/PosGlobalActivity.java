@@ -81,7 +81,6 @@ public class PosGlobalActivity extends AppCompatActivity implements CuentasListe
         FragmentManager fragmentManager = this.getSupportFragmentManager();
         Dialogo dialogo = Dialogo.newInstance((Movimiento) m);
         dialogo.show(fragmentManager, "tagConfirmacion");
-
     }
 
     @Override
