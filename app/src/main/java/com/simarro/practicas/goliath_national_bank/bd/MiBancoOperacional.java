@@ -1,7 +1,7 @@
 package com.simarro.practicas.goliath_national_bank.bd;
 
 import android.content.Context;
-
+import android.database.Cursor;
 
 import com.simarro.practicas.goliath_national_bank.pojo.Cliente;
 import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;

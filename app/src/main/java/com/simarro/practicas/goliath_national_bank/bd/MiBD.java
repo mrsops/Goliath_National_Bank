@@ -13,6 +13,8 @@ import static com.simarro.practicas.goliath_national_bank.pojo.Constantes.*;
 import com.simarro.practicas.goliath_national_bank.dao.ClienteDAO;
 import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
 import com.simarro.practicas.goliath_national_bank.pojo.Movimiento;
+import com.simarro.practicas.goliath_national_bank.pojo.Cuenta;
+import com.simarro.practicas.goliath_national_bank.pojo.Movimiento;
 
 
 public class MiBD extends SQLiteOpenHelper {
@@ -21,16 +23,17 @@ public class MiBD extends SQLiteOpenHelper {
     //nombre de la base de datos
     private static final String database = "MiBanco";
     //versión de la base de datos
-    private static final int version = 12;
+    private static final int version = 11;
     //Instrucción SQL para crear la tabla de Clientes
     private String sqlCreacionClientes = "CREATE TABLE clientes ( id INTEGER PRIMARY KEY AUTOINCREMENT, nif STRING, nombre STRING, " +
             "apellidos STRING, claveSeguridad STRING, email STRING);";
     //Instruccion SQL para crear la tabla de Cuentas
     private String sqlCreacionCuentas = "CREATE TABLE cuentas ( id INTEGER PRIMARY KEY AUTOINCREMENT, banco STRING, sucursal STRING, " +
-            "dc STRING, numerocuenta STRING, saldoactual FLOAT, idcliente INTEGER);" ;
+            "dc STRING, numerocuenta STRING, saldoactual FLOAT, idcliente INTEGER);";
     //Instruccion SQL para crear la tabla de movimientos
     private String sqlCreacionMovimientos = "CREATE TABLE movimientos ( id INTEGER PRIMARY KEY AUTOINCREMENT, tipo INTEGER, fechaoperacion LONG," +
             " descripcion STRING, importe FLOAT, idcuentaorigen INTEGER, idcuentadestino INTEGER);";
+    //Instruccio SQL para crear la tabla de cajeros
     private String sqlCreacionCajeros = "CREATE TABLE " + CAJEROS_TABLE + " (" + FIELD_CAJEROS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + FIELD_DIRECCION + " STRING, " + FIELD_LAT + " STRING," + FIELD_LNG + " STRING," + FIELD_ZOOM + " STRING);";
 
 
@@ -43,6 +46,7 @@ public class MiBD extends SQLiteOpenHelper {
     public ClienteDAO getClienteDAO() {
         return clienteDAO;
     }
+
     public CuentaDAO getCuentaDAO() {
         return cuentaDAO;
     }
@@ -58,7 +62,7 @@ public class MiBD extends SQLiteOpenHelper {
     private static MovimientoDAO movimientoDAO;
 
     public static MiBD getInstance(Context context) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new MiBD(context);
             db = instance.getWritableDatabase();
             clienteDAO = new ClienteDAO();
@@ -69,16 +73,21 @@ public class MiBD extends SQLiteOpenHelper {
         return instance;
     }
 
-    public static SQLiteDatabase getDB(){
+    public static SQLiteDatabase getDB() {
         return db;
     }
-    public static void closeDB(){db.close();};
+
+    public static void closeDB() {
+        db.close();
+    }
+
+    ;
 
     /**
      * Constructor de clase
      */
     protected MiBD(Context context) {
-        super( context, database, null, version );
+        super(context, database, null, version);
     }
 
     @Override
@@ -92,26 +101,10 @@ public class MiBD extends SQLiteOpenHelper {
         Log.i("SQLite", "Se crea la base de datos " + database + " version " + version);
     }
 
-    public void insercionMovimiento(Movimiento m){
-        db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe,idcuentaorigen, idcuentadestino) VALUES (null, null, " +m.getTipo()+", "+m.getFechaOperacion().getTime()+", '"+m.getDescripcion()+"', "+m.getImporte()+","+m.getCuentaOrigen().getId()+", "+m.getCuentaDestino().getId()+");");
-    }
-    public void actualizarSaldo(Cuenta c){
-        db.execSQL("UPDATE cuentas SET saldoactual= "+c.getSaldoActual()+" WHERE banco='"+c.getBanco()+"'AND sucursal='"+c.getSucursal()+"' AND dc='"+c.getDc()+"' AND numerocuenta='"+c.getNumeroCuenta()+"';");
-    }
-    public boolean existeCuenta(String banco,String sucursal,String dc,String numCuenta){
-        String sql="SELECT numerocuenta FROM cuentas WHERE banco='"+banco+"' AND sucursal='"+sucursal+"' AND dc='"+dc+"' AND numerocuenta='"+numCuenta+"';";
-        Cursor c = db.rawQuery(sql,null);
-        if (c.getCount() > 0) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion ) {
-        Log.i("SQLite", "Control de versiones: Old Version=" + oldVersion + " New Version= " + newVersion  );
-        if ( newVersion > oldVersion )
-        {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.i("SQLite", "Control de versiones: Old Version=" + oldVersion + " New Version= " + newVersion);
+        if (newVersion > oldVersion) {
             //elimina tabla
             db.execSQL("DROP TABLE IF EXISTS clientes");
             db.execSQL("DROP TABLE IF EXISTS cuentas");
@@ -124,16 +117,16 @@ public class MiBD extends SQLiteOpenHelper {
             db.execSQL(sqlCreacionCajeros);
 
             insercionDatos(db);
-            Log.i("SQLite", "Se actualiza versión de la base de datos, New version= " + newVersion  );
+            Log.i("SQLite", "Se actualiza versión de la base de datos, New version= " + newVersion);
         }
     }
 
-    private void insercionDatos(SQLiteDatabase db){
+    private void insercionDatos(SQLiteDatabase db) {
         // Insertamos los clientes
         db.execSQL("INSERT INTO clientes(id, nif, nombre, apellidos, claveSeguridad, email) VALUES (1, '11111111A', 'Filemón', 'Pí', '1234', 'filemon.pi@tia.es');");
         db.execSQL("INSERT INTO clientes(id, nif, nombre, apellidos, claveSeguridad, email) VALUES (2, '22222222B', 'Mortadelo', 'Ibáñez', '1234', 'mortadelo.ibanez@tia.es');");
         db.execSQL("INSERT INTO clientes(id, nif, nombre, apellidos, claveSeguridad, email) VALUES (3, '33333333C', 'Vicente', 'Mondragón', '1234', 'vicente.mondragon@tia.es');");
-        db.execSQL("INSERT INTO clientes (rowid, id, nif, nombre, apellidos, claveSeguridad, email) VALUES (null, null, '44444444D', 'Ayrton', 'Senna', '01234', 'ayrton.senna@f1.es');");
+        db.execSQL("INSERT INTO clientes (rowid, id, nif, nombre, apellidos, claveSeguridad, email) VALUES (null, null, '44444444D', 'Ayrton', 'Senna', '1234', 'ayrton.senna@f1.es');");
         db.execSQL("INSERT INTO clientes(rowid, id, nif, nombre, apellidos, claveSeguridad, email)VALUES(null, null, 'B1111111A', 'Ibertrola', '-', '1234', '-');");
         db.execSQL("INSERT INTO clientes (rowid, id, nif, nombre, apellidos, claveSeguridad, email) VALUES (null, null, 'B2222222B', 'Gas Natural', '-', '1234', '-');");
         db.execSQL("INSERT INTO clientes (rowid, id, nif, nombre, apellidos, claveSeguridad, email) VALUES (null, null, 'B3333333C', 'Telefónica', '-', '1234', '-');");
@@ -195,6 +188,21 @@ public class MiBD extends SQLiteOpenHelper {
 
     }
 
+    public void insercionMovimiento(Movimiento m) {
+        db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe, idcuentaorigen, idcuentadestino) VALUES (null, null, " + m.getTipo() + ", " + m.getFechaOperacion().getTime() + ", '" + m.getDescripcion() + "', " + m.getImporte() + ", " + m.getCuentaOrigen().getId() + ", " + m.getCuentaDestino().getId() + "); ");
+    }
 
+    public void actualizarSaldo(Cuenta c) {
+        db.execSQL("UPDATE cuentas SET saldoactual= " + c.getSaldoActual() + " WHERE banco='" + c.getBanco() + "'AND sucursal='" + c.getSucursal() + "' AND dc='" + c.getDc() + "' AND numerocuenta='" + c.getNumeroCuenta() + "';");
+    }
+
+    public boolean existeCuenta(String banco, String sucursal, String dc, String numCuenta) {
+        String sql = "SELECT numerocuenta FROM cuentas WHERE banco='" + banco + "' AND sucursal='" + sucursal + "' AND dc='" + dc + "' AND numerocuenta='" + numCuenta + "';";
+        Cursor c = db.rawQuery(sql, null);
+        if (c.getCount() > 0) {
+            return true;
+        }
+        return false;
+    }
 
 }

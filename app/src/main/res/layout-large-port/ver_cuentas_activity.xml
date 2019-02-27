@@ -8,6 +8,9 @@
     tools:context="com.simarro.practicas.goliath_national_bank.vista.PosGlobalActivity"
 
     >
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <fragment
         class="com.simarro.practicas.goliath_national_bank.fragments.ActivityFragmentCuentas"
         android:id="@+id/FrgCuentas"

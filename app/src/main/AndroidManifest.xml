@@ -21,7 +21,11 @@
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.TransferenciaActivity_old" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Movimientos" />
         <activity android:name="com.simarro.practicas.goliath_national_bank.vista.PosGlobalActivity" />
-        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.VerMovimientosActivity"></activity>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.VerMovimientosActivity"/>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.Transferencias"/>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.PreferenciasActivity"/>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.CajerosActivity"/>
+        <activity android:name="com.simarro.practicas.goliath_national_bank.vista.GestionCajerosActivity"/>
     </application>
 
 </manifest>

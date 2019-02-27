@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.simarro.practicas.banco_aitor.dao.CajeroDAO;
+import com.simarro.practicas.goliath_national_bank.dao.CajeroDAO;
 
-import static com.simarro.practicas.banco_aitor.pojo.Constantes.FIELD_DIRECCION;
+import static com.simarro.practicas.goliath_national_bank.pojo.Constantes.FIELD_DIRECCION;
 
 public class AdaptadorCajeros extends CursorAdapter {
 

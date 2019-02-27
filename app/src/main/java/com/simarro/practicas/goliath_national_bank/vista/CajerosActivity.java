@@ -36,8 +36,8 @@ public class CajerosActivity extends AppCompatActivity {
         adapter = new AdaptadorCajeros(this, cursor);
         list.setAdapter(adapter);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

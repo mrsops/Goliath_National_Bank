@@ -4,24 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context="com.simarro.practicas.goliath_national_bank.vista.PosGlobalActivity"
 
     >
-    <fragment
-        class="com.simarro.practicas.goliath_national_bank.fragments.ActivityFragmentCuentas"
-        android:id="@+id/FrgCuentas"
-        android:layout_width="0px"
-        android:layout_weight="30"
-        android:layout_height="match_parent"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-    <fragment
-        class="com.simarro.practicas.goliath_national_bank.fragments.Activity_Fragment_Movimientos"
-        android:layout_width="0px"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="70"
-        android:id="@+id/FrgMovimientos"
-        />
+        android:orientation="horizontal">
+
+        <fragment
+            class="com.simarro.practicas.goliath_national_bank.fragments.ActivityFragmentCuentas"
+            android:id="@+id/FrgCuentas"
+            android:layout_width="0px"
+            android:layout_weight="30"
+            android:layout_height="match_parent"/>
+
+        <fragment
+            class="com.simarro.practicas.goliath_national_bank.fragments.Activity_Fragment_Movimientos"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="70"
+            android:id="@+id/FrgMovimientos"
+            />
+    </LinearLayout>
+
 
 
 </LinearLayout>

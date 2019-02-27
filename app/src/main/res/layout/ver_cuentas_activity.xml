@@ -8,6 +8,4 @@
     android:background="@drawable/gnb_background"
     android:id="@+id/FrgCuentas"
     >
-
-
 </fragment>

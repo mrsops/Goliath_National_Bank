@@ -55,8 +55,8 @@ public class GestionCajerosActivity extends AppCompatActivity {
         btnGuardar = findViewById(R.id.btnGuardar);
         btnCancelar = findViewById(R.id.btnCancelar);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         cajeroDAO = new CajeroDAO(this);
         cajeroDAO.abrir();

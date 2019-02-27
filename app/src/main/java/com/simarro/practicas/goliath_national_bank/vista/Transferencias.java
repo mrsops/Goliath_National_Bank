@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class Transferencias extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
-
+    Cliente cliente;
     ArrayList<String> listaCuentasString =new ArrayList<>();
     ArrayList<Cuenta> listaCuentas =new ArrayList<>();
     String [] listaMonedas = new String[]{"€","$","£","\u20BF"};
@@ -66,13 +66,11 @@ public class Transferencias extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_transferencias);
         gv=findViewById(R.id.cuentasGrid);
         Intent intento=getIntent();
-        int idCliente=Integer.parseInt(intento.getStringExtra("id"));
-        Cliente cli=new Cliente();
-        cli.setId(idCliente);
+        this.cliente = (Cliente) getIntent().getSerializableExtra("Cliente");
 
         Cuenta c = new Cuenta();
 
-        this.listaCuentas =this.cuentaDAO.getCuentas(cli);
+        this.listaCuentas =this.cuentaDAO.getCuentas(cliente);
         this.listaCuentasString =cuentasToString(listaCuentas);
 
         adaptadorString=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, listaCuentasString);
@@ -120,6 +118,14 @@ public class Transferencias extends AppCompatActivity implements AdapterView.OnI
     }
 
     @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(this, MenuActivity.class);
+        menu.putExtra("Cliente", this.cliente);
+        startActivity(menu);
+        finish();
+    }
+
+    @Override
     public void onClick(View v) {
 
         if(v.getTag().toString().equalsIgnoreCase("radio1")){
@@ -160,8 +166,6 @@ public class Transferencias extends AppCompatActivity implements AdapterView.OnI
             params2.height= 1;
             this.sp.setLayoutParams(params2);
             this.sp.setVisibility(View.INVISIBLE);
-
-
 
         }
 

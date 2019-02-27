@@ -54,6 +54,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             if(esAdmin(this.cliente)){
                 Intent intent = new Intent(this, CajerosActivity.class);
                 startActivity(intent);
+                finish();
             }else{
                 Toast.makeText(this, "Solo los administradores pueden acceder a este apartado", Toast.LENGTH_LONG).show();
             }
@@ -63,7 +64,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(MenuActivity.this, cliente.getNombre()+" "+this.cliente.getClaveSeguridad(), Toast.LENGTH_LONG).show();
 
         }else if(operaciones.getId()==v.getId()){
-            startActivity(new Intent(MenuActivity.this, Transferencias.class));
+            Intent operacionesAct = new Intent(this, Transferencias.class);
+            operacionesAct.putExtra("Cliente", cliente);
+            startActivity(operacionesAct);
             finish();
         }else{
 
